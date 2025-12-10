@@ -1,14 +1,69 @@
 services:
-  stats-server:
-    ports:
-      - "9090:9090"
-
   stats-db:
     image: postgres:16.1
+    container_name: stats-db
+    environment:
+      POSTGRES_DB: stats
+      POSTGRES_USER: stats
+      POSTGRES_PASSWORD: stats
+    ports:
+      - "6543:5432"
+    networks:
+      - ewm
+    volumes:
+      - stats_data:/var/lib/postgresql/data
+
+  stats-server:
+    build:
+      context: ./stats/stats-server
+    container_name: stats-service
+    depends_on:
+      - stats-db
+    ports:
+      - "9090:9090"
+    networks:
+      - ewm
+    environment:
+      SERVER_PORT: 9090
+      SPRING_DATASOURCE_URL: jdbc:postgresql://stats-db:5432/stats
+      SPRING_DATASOURCE_USERNAME: stats
+      SPRING_DATASOURCE_PASSWORD: stats
+
+  main-db:
+    image: postgres:16.1
+    container_name: main-db
+    environment:
+      POSTGRES_DB: main
+      POSTGRES_USER: main
+      POSTGRES_PASSWORD: main
+    ports:
+      - "6544:5432"
+    networks:
+      - ewm
+    volumes:
+      - main_data:/var/lib/postgresql/data
 
   ewm-service:
+    build:
+      context: ./main-service
+    container_name: ewm-service
+    depends_on:
+      - main-db
+      - stats-server
     ports:
       - "8080:8080"
+    networks:
+      - ewm
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://main-db:5432/main
+      SPRING_DATASOURCE_USERNAME: main
+      SPRING_DATASOURCE_PASSWORD: main
+      SPRING_APPLICATION_JSON: '{"stats-server":{"url":"http://stats-server:9090"}}'
 
-  ewm-db:
-    image: postgres:16.1
+networks:
+  ewm:
+    driver: bridge
+
+volumes:
+  stats_data:
+  main_data:
