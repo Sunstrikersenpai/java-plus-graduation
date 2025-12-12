@@ -23,7 +23,6 @@ public class StatsController {
     private final StatsService statsService;
 
     @PostMapping("/hit")
-    // в соответсвии с ТЗ - данный метод VOID и выдает код 201
     @ResponseStatus(value = HttpStatus.CREATED)
     public void create(@RequestBody @Valid EndpointHitDto endpointHitDto) {
         log.error("Создание записи {}", endpointHitDto);

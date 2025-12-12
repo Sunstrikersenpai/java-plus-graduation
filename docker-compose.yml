@@ -45,7 +45,7 @@ services:
 
   ewm-service:
     build:
-      context: ./main-service
+      context: core/main-service
     container_name: ewm-service
     depends_on:
       - main-db

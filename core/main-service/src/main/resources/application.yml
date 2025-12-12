@@ -1,16 +1,15 @@
 spring:
   application:
-    name: stats-server
+    name: main-service
+
   config:
     import: "optional:configserver:"
+
   cloud:
     config:
       discovery:
         enabled: true
         service-id: config-server
-  sql:
-    init:
-      mode: always
 
 server:
-  port: 0
+  port: 4405
