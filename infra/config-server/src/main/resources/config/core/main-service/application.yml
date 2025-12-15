@@ -11,13 +11,6 @@ spring:
     init:
       mode: always
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://${eureka.instance.hostname:localhost}:${eureka.instance.port:8761}/eureka/
-
 stats-service-id: stats-server
 
 logging:
