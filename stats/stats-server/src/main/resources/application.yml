@@ -8,9 +8,6 @@ spring:
       discovery:
         enabled: true
         service-id: config-server
-  sql:
-    init:
-      mode: always
 
 server:
   port: 0

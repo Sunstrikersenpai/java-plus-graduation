@@ -12,4 +12,4 @@ spring:
         service-id: config-server
 
 server:
-  port: 4405
+  port: 0

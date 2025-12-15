@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ewm
-    username: ewm
-    password: ewm
-
+    url: jdbc:postgresql://localhost:5432/ewm_stats_db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
     hibernate:
@@ -13,8 +13,14 @@ spring:
         format_sql: true
         time_zone: UTC
         default_schema: public
+  sql:
+    init:
+      mode: always
+
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname:localhost}:${eureka.instance.port:8761}/eureka/
