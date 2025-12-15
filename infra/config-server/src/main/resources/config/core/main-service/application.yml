@@ -1,15 +1,3 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/ewm_main_db
-    username: postgres
-    password: password
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: none
-  sql:
-    init:
-      mode: always
 
 eureka:
   client:
@@ -23,12 +11,15 @@ stats-service-id: stats-server
 logging:
   level:
     ru.practicum: info
+    com:
+      zaxxer:
+        hikari: DEBUG
     org:
       springframework:
+        jdbc:
+          datasource: DEBUG
         orm:
           jpa: INFO
           jpa.JpaTransactionManager: DEBUG
         transaction: INFO
         transaction.interceptor: TRACE
-
-
