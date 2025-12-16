@@ -1,18 +1,18 @@
 spring:
   application:
-    name: stats-server
-  config:
-    import: "configserver:"
+    name: config-server
+  profiles:
+    active: native
   cloud:
     config:
-      fail-fast: true
-      retry:
-        useRandomPolicy: true
-        max-interval: 6000
-      discovery:
-        enabled: true
-        service-id: config-server
-
+      server:
+        native:
+          searchLocations:
+            - classpath:config/core/{application}
+            - classpath:config/stats/{application}
+            - classpath:config/infra/{application}
+    discovery:
+      enabled: true
 server:
   port: 0
 
