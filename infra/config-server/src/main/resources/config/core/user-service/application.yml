@@ -1,0 +1,29 @@
+logging:
+  level:
+    ru.practicum.user: TRACE
+    org:
+      springframework:
+        orm:
+          jpa: INFO
+          jpa.JpaTransactionManager: INFO
+        transaction: INFO
+        transaction.interceptor: INFO
+      springframework.cloud.netflix.eureka: INFO
+      springframework.web.client.RestTemplate: WARN
+      org.springframework.cloud.openfeign: DEBUG
+      com.fasterxml.jackson: DEBUG
+      apache.kafka: INFO
+    feign.Logger: WARN
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:1488/ewm_main_db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always

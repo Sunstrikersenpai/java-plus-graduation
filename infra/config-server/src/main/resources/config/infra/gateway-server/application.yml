@@ -11,7 +11,23 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: main
-          uri: lb://main-service
+        - id: user-service
+          uri: lb://user-service
           predicates:
-            - Path=/**
+            - Path=/admin/users/**
+        - id: event-service
+          uri: lb://event-service
+          predicates:
+            - Path=/users/{userId}/events/**, /admin/events/**, /events/**
+        - id: request-service
+          uri: lb://request-service
+          predicates:
+            - Path=/users/{userId}/requests/**
+        - id: category-service
+          uri: lb://category-service
+          predicates:
+            - Path=/admin/categories/**, /categories/**
+        - id: compilation-service
+          uri: lb://compilation-service
+          predicates:
+            - Path=/compilations/**, /admin/compilations/**
