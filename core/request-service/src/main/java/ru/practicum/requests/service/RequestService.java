@@ -1,0 +1,48 @@
+package ru.practicum.requests.service;
+
+import jakarta.validation.constraints.NotNull;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import ru.practicum.interaction.dto.request.RequestDto;
+import ru.practicum.interaction.enums.RequestStatus;
+
+import java.util.List;
+
+public interface RequestService {
+
+    /**
+     * Получение информации о заявках текущего пользователя на участие в чужих событиях
+     *
+     * @param userId Код пользователя
+     * @return List<RequestDto> Список событий, с которых участвует пользователь
+     */
+    List<RequestDto> getUserRequests(Long userId);
+
+    /**
+     * Добавление запроса от текущего пользователя на участие в событии
+     *
+     * @param userId  Код пользователя
+     * @param eventId Код события
+     * @return RequestDto Созданный запрос
+     */
+    RequestDto addParticipationRequest(Long userId, Long eventId);
+
+    /**
+     * Отмена своего запроса на участие в событии
+     *
+     * @param userId    Код пользователя
+     * @param requestId Код запроса
+     * @return Отмененный запрос
+     */
+    RequestDto cancelRequest(Long userId, Long requestId);
+
+    List<RequestDto> getRequestsByEventId(Long eventId);
+
+    List<RequestDto> getAllRequestsByIds(List<Long> requestIds);
+
+    Long countRequests(Long eventId, RequestStatus status);
+
+    List<RequestDto> saveAll(List<RequestDto> request);
+
+    List<RequestDto> getRequestsWithStatus(List<Long> requestId, RequestStatus status);
+}
