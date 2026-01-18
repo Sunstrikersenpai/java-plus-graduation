@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.interaction.dto.category.CategoryDto;
 
-
 import java.util.Collection;
 
 @RestController

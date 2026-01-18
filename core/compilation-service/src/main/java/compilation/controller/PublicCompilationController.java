@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.practicum.interaction.dto.compilations.CompilationDto;
 import ru.practicum.interaction.dto.compilations.PublicCompilationRequestParamsDto;
 
-
 import java.util.List;
 
 @RestController

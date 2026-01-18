@@ -15,7 +15,6 @@ import ru.practicum.interaction.dto.compilations.PublicCompilationRequestParamsD
 import ru.practicum.interaction.dto.event.EventShortDto;
 import ru.practicum.interaction.exception.EntityNotExistsException;
 
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -56,7 +55,7 @@ public class CompilationServiceImpl implements CompilationService {
         }
         Compilation compilation = CompilationMapper.toEntity(adminNewCompilationParamDto, events);
         Compilation saved = compilationRepository.save(compilation);
-        return CompilationMapper.toDto(saved,events);
+        return CompilationMapper.toDto(saved, events);
     }
 
     /**
@@ -95,7 +94,7 @@ public class CompilationServiceImpl implements CompilationService {
         }
 
         compilationRepository.save(exitingCompilation);
-        return CompilationMapper.toDto(exitingCompilation,events);
+        return CompilationMapper.toDto(exitingCompilation, events);
 
     }
 
@@ -109,7 +108,7 @@ public class CompilationServiceImpl implements CompilationService {
     public CompilationDto getCompilationById(long complId) {
         Compilation compilation = validateCompilationExists(complId);
         Set<EventShortDto> events = eventClient.findAllByIdIn(new ArrayList<>(compilation.getEvents()));
-        return CompilationMapper.toDto(compilation,events);
+        return CompilationMapper.toDto(compilation, events);
     }
 
     /**
@@ -134,11 +133,11 @@ public class CompilationServiceImpl implements CompilationService {
                 .flatMap(c -> c.getEvents().stream())
                 .collect(Collectors.toSet());
 
-        Map<Long,EventShortDto> eventMap = eventClient.findAllByIdIn(new ArrayList<>(eventIds)).stream()
-                        .collect(Collectors.toMap(EventShortDto::getId, Function.identity()));
+        Map<Long, EventShortDto> eventMap = eventClient.findAllByIdIn(new ArrayList<>(eventIds)).stream()
+                .collect(Collectors.toMap(EventShortDto::getId, Function.identity()));
 
         return compilations.stream()
-                .map(compilation -> CompilationMapper.toDto(compilation,eventMap))
+                .map(compilation -> CompilationMapper.toDto(compilation, eventMap))
                 .collect(Collectors.toList());
     }
 

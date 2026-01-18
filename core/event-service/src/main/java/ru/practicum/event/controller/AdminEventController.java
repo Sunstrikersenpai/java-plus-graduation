@@ -11,7 +11,6 @@ import ru.practicum.interaction.dto.event.EventShortDto;
 import ru.practicum.interaction.dto.event.UpdateEventAdminRequest;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/admin/events")

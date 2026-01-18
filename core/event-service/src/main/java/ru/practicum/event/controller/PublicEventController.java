@@ -31,13 +31,25 @@ public class PublicEventController {
     @GetMapping("/{eventId}")
     public EventFullDto getEventById(
             @PathVariable Long eventId,
+            @RequestHeader("X-EWM-USER-ID") Long userId,
             HttpServletRequest request
     ) {
-        return eventService.getEventById(eventId, request);
+        return eventService.getEventById(eventId, userId, request);
     }
 
     @GetMapping("/idIn")
     public Set<EventShortDto> findAllByIdIn(@RequestParam List<Long> eventIds) {
         return eventService.findAllByIdIn(eventIds);
+    }
+
+    @GetMapping("/recommendation")
+    List<EventShortDto> getRecommendations(@RequestHeader("X-EWM-USER-ID") Long userId) {
+        return eventService.getRecommendations(userId);
+    }
+
+    @PutMapping("/{eventId}/like")
+    void like(@PathVariable Long eventId,
+              @RequestHeader("X-EWM-USER-ID") Long userId) {
+        eventService.like(eventId, userId);
     }
 }

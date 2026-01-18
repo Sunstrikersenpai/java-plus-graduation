@@ -6,7 +6,6 @@ import ru.practicum.interaction.dto.category.CategoryDto;
 import ru.practicum.interaction.dto.event.EventFullDto;
 import ru.practicum.interaction.dto.event.EventShortDto;
 import ru.practicum.interaction.dto.event.NewEventDto;
-import ru.practicum.interaction.dto.user.UserDto;
 import ru.practicum.interaction.dto.user.UserShortDto;
 
 import java.util.Map;
@@ -24,7 +23,7 @@ public class EventMapper {
                 .build();
     }
 
-    public static EventFullDto toEventFullDto(Event event,Map<Long, CategoryDto> catMap, Map<Long, UserShortDto> userMap) {
+    public static EventFullDto toEventFullDto(Event event, Map<Long, CategoryDto> catMap, Map<Long, UserShortDto> userMap) {
         return EventFullDto.builder()
                 .id(event.getId())
                 .title(event.getTitle())
@@ -40,12 +39,12 @@ public class EventMapper {
                 .publishedOn(event.getPublishedOn())
                 .location(event.getLocation())
                 .requestModeration(event.getRequestModeration())
-                .views(0L)
+                .rating(0.0)
                 .confirmedRequests(0L)
                 .build();
     }
 
-    public static EventFullDto toEventFullDto(Event event,CategoryDto categoryDto, UserShortDto userDto) {
+    public static EventFullDto toEventFullDto(Event event, CategoryDto categoryDto, UserShortDto userDto) {
         return EventFullDto.builder()
                 .id(event.getId())
                 .title(event.getTitle())
@@ -61,7 +60,7 @@ public class EventMapper {
                 .publishedOn(event.getPublishedOn())
                 .location(event.getLocation())
                 .requestModeration(event.getRequestModeration())
-                .views(0L)
+                .rating(0.0)
                 .confirmedRequests(0L)
                 .build();
     }

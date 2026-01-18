@@ -7,10 +7,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import ru.practicum.event.model.Event;
 import ru.practicum.interaction.enums.State;
 
-
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface EventRepository extends JpaRepository<Event, Long>, JpaSpecificationExecutor<Event> {
     Page<Event> findAllByInitiatorIdOrderByCreatedOnDesc(Long initiator, Pageable pageable);

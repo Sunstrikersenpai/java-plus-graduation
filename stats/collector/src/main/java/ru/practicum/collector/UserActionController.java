@@ -1,0 +1,27 @@
+package ru.practicum.collector;
+
+import com.google.protobuf.Empty;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
+import io.grpc.stub.StreamObserver;
+import lombok.AllArgsConstructor;
+import net.devh.boot.grpc.server.service.GrpcService;
+import ru.practicum.ewm.stats.proto.message.UserActionProto;
+import ru.practicum.ewm.stats.proto.service.collector.UserActionControllerGrpc;
+
+@GrpcService
+@AllArgsConstructor
+public class UserActionController extends UserActionControllerGrpc.UserActionControllerImplBase {
+    private final UserActionHandler handler;
+
+    @Override
+    public void collectUserAction(UserActionProto request, StreamObserver<Empty> responseObserver) {
+        try {
+            handler.handle(request);
+            responseObserver.onNext(Empty.getDefaultInstance());
+            responseObserver.onCompleted();
+        } catch (Exception e) {
+            responseObserver.onError(new StatusRuntimeException(Status.fromThrowable(e)));
+        }
+    }
+}

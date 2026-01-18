@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import ru.practicum.interaction.dto.event.EventShortDto;
 
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;

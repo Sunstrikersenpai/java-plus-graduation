@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:1488/ewm_main_db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+
+app:
+  kafka:
+    poll-timeout: 200
+    action-consumer:
+      topic: stats.user-actions.v1
+      properties:
+        "[bootstrap.servers]": localhost:9092
+        "[group.id]": user-action.analyzer.consumer
+        "[enable.auto.commit]": false
+        "[auto.offset.reset]": earliest
+        "[key.deserializer]": org.apache.kafka.common.serialization.StringDeserializer
+        "[value.deserializer]": ru.practicum.kafka.UserActionDeserializer
+
+    similarity-consumer:
+      topic: stats.events-similarity.v1
+      properties:
+        "[bootstrap.servers]": localhost:9092
+        "[group.id]": events-similarity.analyzer.consumer
+        "[enable.auto.commit]": false
+        "[auto.offset.reset]": earliest
+        "[key.deserializer]": org.apache.kafka.common.serialization.StringDeserializer
+        "[value.deserializer]": ru.practicum.kafka.EventSimilarityDeserializer
+
+
+  action:
+    weight:
+      view: 0.4
+      registered: 0.8
+      like: 1.0
+
+grpc:
+  server:
+    port: 0

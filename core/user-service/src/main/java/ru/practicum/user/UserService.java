@@ -20,5 +20,5 @@ public interface UserService {
 
     User getUser(Long id);
 
-    Set<UserShortDto> findUsersByIdIn (List<Long> ids);
+    Set<UserShortDto> findUsersByIdIn(List<Long> ids);
 }

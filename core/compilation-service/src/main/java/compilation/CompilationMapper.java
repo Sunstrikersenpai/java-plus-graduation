@@ -6,9 +6,7 @@ import ru.practicum.interaction.dto.compilations.AdminNewCompilationParamDto;
 import ru.practicum.interaction.dto.compilations.CompilationDto;
 import ru.practicum.interaction.dto.event.EventShortDto;
 
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,7 +21,7 @@ public class CompilationMapper {
                 .build();
     }
 
-    public static CompilationDto toDto(Compilation entity, Map<Long,EventShortDto> eventDtoMap) {
+    public static CompilationDto toDto(Compilation entity, Map<Long, EventShortDto> eventDtoMap) {
         return CompilationDto.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())

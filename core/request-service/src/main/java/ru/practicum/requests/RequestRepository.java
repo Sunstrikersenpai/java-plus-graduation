@@ -1,9 +1,6 @@
 package ru.practicum.requests;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import ru.practicum.interaction.dto.request.RequestDto;
 import ru.practicum.interaction.enums.RequestStatus;
 import ru.practicum.requests.model.Request;
 

@@ -27,3 +27,11 @@ spring:
   sql:
     init:
       mode: always
+
+grpc:
+  client:
+    collector:
+      address: 'discovery:///collector'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiation-type: plaintext

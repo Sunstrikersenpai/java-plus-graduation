@@ -1,7 +1,7 @@
 package ru.practicum.interaction.dto.event;
 
 public interface BaseDto {
-    void setViews(Long views);
+    void setRating(Double rating);
 
     void setConfirmedRequests(Long confirmedRequests);
 
