@@ -1,6 +1,7 @@
 package ru.practicum.analyzer.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.practicum.analyzer.model.UserInteraction;
 import ru.practicum.analyzer.model.Weights;
@@ -9,6 +10,7 @@ import ru.practicum.ewm.stats.avro.UserActionAvro;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserInteractionService {
 
     private final UserInteractionRepository repo;
@@ -30,5 +32,4 @@ public class UserInteractionService {
 
         repo.save(entity);
     }
-
 }

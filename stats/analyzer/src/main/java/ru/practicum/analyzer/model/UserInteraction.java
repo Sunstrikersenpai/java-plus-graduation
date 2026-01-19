@@ -1,8 +1,6 @@
 package ru.practicum.analyzer.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +12,11 @@ import java.time.Instant;
 @Setter
 public class UserInteraction {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "user_id", nullable = false)
     private Long userId;
+    @Column(name = "event_id", nullable = false)
     private Long eventId;
     private double weight;
     private Instant lastTimestamp;
