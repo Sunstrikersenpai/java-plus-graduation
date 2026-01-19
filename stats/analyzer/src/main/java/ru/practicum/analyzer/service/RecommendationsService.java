@@ -3,7 +3,6 @@ package ru.practicum.analyzer.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.practicum.analyzer.model.EventSimilarity;
 import ru.practicum.analyzer.model.UserInteraction;
 import ru.practicum.analyzer.repository.EventSimilarityRepository;
 import ru.practicum.analyzer.repository.UserInteractionRepository;
@@ -12,7 +11,10 @@ import ru.practicum.ewm.stats.proto.message.RecommendedEventProto;
 import ru.practicum.ewm.stats.proto.message.SimilarEventsRequestProto;
 import ru.practicum.ewm.stats.proto.message.UserPredictionsRequestProto;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -59,11 +61,11 @@ public class RecommendationsService {
 
         interactionRepo.findByEventIdIn(request.getEventIdList())
                 .forEach(interaction ->
-                    eventScoreMap.merge(
-                            interaction.getEventId(),
-                            interaction.getWeight(),
-                            Double::sum
-                    ));
+                        eventScoreMap.merge(
+                                interaction.getEventId(),
+                                interaction.getWeight(),
+                                Double::sum
+                        ));
 
         return eventScoreMap.entrySet().stream()
                 .map(e -> toProto(e.getKey(), e.getValue()));

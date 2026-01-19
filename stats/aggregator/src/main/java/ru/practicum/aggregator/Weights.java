@@ -5,9 +5,6 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import ru.practicum.ewm.stats.avro.ActionTypeAvro;
 
-import java.util.EnumMap;
-import java.util.Map;
-
 @ConfigurationProperties(prefix = "app.action.weight")
 @Getter
 @Setter
