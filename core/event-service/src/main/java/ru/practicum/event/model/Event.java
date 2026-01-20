@@ -24,7 +24,7 @@ public class Event {
 
     private String annotation;
 
-    @Column(name="category_id")
+    @Column(name = "category_id")
     private Long category;
 
     @CreationTimestamp

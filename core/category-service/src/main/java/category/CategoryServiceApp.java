@@ -13,6 +13,6 @@ import ru.practicum.interaction.exception.ApiExceptionHandler;
 @EnableFeignClients(clients = {EventClient.class})
 public class CategoryServiceApp {
     public static void main(String[] args) {
-        SpringApplication.run(CategoryServiceApp.class,args);
+        SpringApplication.run(CategoryServiceApp.class, args);
     }
 }

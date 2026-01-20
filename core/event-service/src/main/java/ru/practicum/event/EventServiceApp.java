@@ -17,6 +17,6 @@ import ru.practicum.interaction.exception.ApiExceptionHandler;
 @ComponentScan("ru.practicum")
 public class EventServiceApp {
     public static void main(String[] args) {
-        SpringApplication.run(EventServiceApp.class,args);
+        SpringApplication.run(EventServiceApp.class, args);
     }
 }

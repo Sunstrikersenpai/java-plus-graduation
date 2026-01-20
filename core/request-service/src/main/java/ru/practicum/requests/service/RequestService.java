@@ -1,8 +1,5 @@
 package ru.practicum.requests.service;
 
-import jakarta.validation.constraints.NotNull;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import ru.practicum.interaction.dto.request.RequestDto;
 import ru.practicum.interaction.enums.RequestStatus;
 

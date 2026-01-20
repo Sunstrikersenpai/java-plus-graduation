@@ -1,0 +1,41 @@
+app:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      topic: stats.user-actions.v1
+      poll-timeout: 100
+      group-id: aggregator
+      value-deserializer: ru.practicum.kafka.UserActionDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+    producer:
+      topic: stats.events-similarity.v1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: ru.practicum.kafka.GenericAvroSerializer
+
+  action.weight:
+    view: 0.4
+    registered: 0.8
+    like: 1.0
+
+
+grpc:
+  server:
+    port: 0
+
+logging:
+  level:
+    ru.practicum.collector: TRACE
+    org:
+      springframework:
+        orm:
+          jpa: INFO
+          jpa.JpaTransactionManager: INFO
+        transaction: INFO
+        transaction.interceptor: INFO
+      springframework.cloud.netflix.eureka: INFO
+      springframework.web.client.RestTemplate: WARN
+      org.springframework.cloud.openfeign: DEBUG
+      com.fasterxml.jackson: DEBUG
+      apache.kafka: INFO
+    feign.Logger: WARN

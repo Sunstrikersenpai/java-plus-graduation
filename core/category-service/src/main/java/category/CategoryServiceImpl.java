@@ -9,7 +9,6 @@ import ru.practicum.interaction.dto.category.UpdateCategoryDto;
 import ru.practicum.interaction.exception.ConflictException;
 import ru.practicum.interaction.exception.NotFoundException;
 
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;

@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.practicum.interaction.enums.StateAction;
 
-
 import java.time.LocalDateTime;
 
 @Data

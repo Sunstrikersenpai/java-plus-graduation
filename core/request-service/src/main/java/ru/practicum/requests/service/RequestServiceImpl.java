@@ -1,12 +1,13 @@
 package ru.practicum.requests.service;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.practicum.client.CollectorClient;
 import ru.practicum.interaction.dto.event.EventFullDto;
 import ru.practicum.interaction.dto.request.RequestDto;
 import ru.practicum.interaction.dto.user.UserShortDto;
+import ru.practicum.interaction.enums.ActionType;
 import ru.practicum.interaction.enums.RequestStatus;
 import ru.practicum.interaction.enums.State;
 import ru.practicum.interaction.exception.ConflictException;
@@ -18,6 +19,7 @@ import ru.practicum.requests.clients.UserClient;
 import ru.practicum.requests.model.Request;
 import ru.practicum.requests.model.RequestMapper;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,6 +29,7 @@ import java.util.List;
 @Slf4j
 public class RequestServiceImpl implements RequestService {
 
+    private final CollectorClient collectorClient;
     private final UserClient userClient;
     private final RequestRepository requestRepository;
     private final EventClient eventClient;
@@ -104,6 +107,7 @@ public class RequestServiceImpl implements RequestService {
         }
 
         requestRepository.save(newRequest);
+        collectorClient.collectAction(userId, eventId, ActionType.ACTION_REGISTER.toString(), Instant.now());
         RequestDto dto = RequestMapper.toDto(newRequest);
 
         return dto;
@@ -165,8 +169,8 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public List<RequestDto> getRequestsWithStatus(List<Long> requestId,RequestStatus status) {
-        List<Request> req = requestRepository.findByEventIdInAndStatus(requestId,status);
+    public List<RequestDto> getRequestsWithStatus(List<Long> requestId, RequestStatus status) {
+        List<Request> req = requestRepository.findByEventIdInAndStatus(requestId, status);
         return RequestMapper.toDto(req);
     }
 

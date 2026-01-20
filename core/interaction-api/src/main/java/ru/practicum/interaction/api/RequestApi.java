@@ -24,4 +24,7 @@ public interface RequestApi {
     @GetMapping("/requests/status")
     List<RequestDto> getRequestsWithStatus(@RequestParam @NotNull List<Long> requestId,
                                            @RequestParam @NotNull RequestStatus status);
+
+    @GetMapping("/users/{userId}/requests")
+    List<RequestDto> getUserRequests(@PathVariable @Positive Long userId);
 }

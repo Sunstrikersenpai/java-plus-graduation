@@ -41,8 +41,8 @@ public class ClientRequestController {
 
     @GetMapping("/status")
     List<RequestDto> getRequestsWithStatus(@RequestParam List<Long> requestId,
-                                         @RequestParam RequestStatus status) {
-        return requestService.getRequestsWithStatus(requestId,status);
+                                           @RequestParam RequestStatus status) {
+        return requestService.getRequestsWithStatus(requestId, status);
     }
 
 }

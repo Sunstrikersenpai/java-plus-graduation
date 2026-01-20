@@ -1,7 +1,6 @@
 package ru.practicum.event;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.RequestParam;
 import ru.practicum.event.model.RequestAdminParams;
 import ru.practicum.event.model.RequestPublicParams;
 import ru.practicum.interaction.dto.event.*;
@@ -28,7 +27,7 @@ public interface EventService {
 
     List<EventShortDto> getAllEvents(RequestPublicParams params, HttpServletRequest request);
 
-    EventFullDto getEventById(Long eventId, HttpServletRequest request);
+    EventFullDto getEventById(Long eventId, Long userId, HttpServletRequest request);
 
     List<RequestDto> getEventParticipants(Long userId, Long eventId);
 
@@ -37,5 +36,10 @@ public interface EventService {
     Set<EventShortDto> findAllByIdIn(List<Long> eventIds);
 
     EventFullDto privateGetById(Long eventId);
+
     List<EventShortDto> getEventsByCategory(Long categoryId);
+
+    List<EventShortDto> getRecommendations(Long userId);
+
+    void like(Long eventId, Long userId);
 }

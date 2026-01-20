@@ -14,7 +14,6 @@ import ru.practicum.interaction.dto.request.EventRequestStatusUpdateRequest;
 import ru.practicum.interaction.dto.request.EventRequestStatusUpdateResult;
 import ru.practicum.interaction.dto.request.RequestDto;
 
-
 import java.util.List;
 
 @RestController
